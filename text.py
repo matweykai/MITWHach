@@ -6,7 +6,6 @@ from pdfminer.pdfinterp import PDFResourceManager
 from pdfminer.pdfpage import PDFPage
 
 
-# например "Лабораторные работы С#.pdf"
 def text_from_pdf(pdf_path):
     resource_manager = PDFResourceManager()
     fake_file_handle = io.StringIO()

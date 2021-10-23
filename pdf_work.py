@@ -58,3 +58,20 @@ def split_file(target_path, file_name, *split_points_indexes):
             with open(new_file_name, 'wb') as output_file:
                 pdf_writer.write(output_file)
     return folder
+
+
+def delete_pages(target_path, file_name, *page_indexes):
+    abs_file_name = f'{target_path}/{file_name}'
+    new_file_name = f'{target_path}/File_Without_Some_Pages.pdf'
+    with open(abs_file_name, 'rb') as pdf_file:
+        try:
+            pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+        except utils.PdfReadError:
+            raise RuntimeError(f"Error during reading file {file_name}")
+        pdf_writer = PyPDF2.PdfFileWriter()
+        add = pdf_writer.addPage
+        for page_num in range(pdf_reader.numPages):
+            if (page_num+1) not in page_indexes:
+                add(pdf_reader.getPage(page_num))
+        with open(new_file_name, 'wb') as output_file:
+            pdf_writer.write(output_file)

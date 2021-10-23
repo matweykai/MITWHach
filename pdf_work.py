@@ -7,6 +7,14 @@ from os import mkdir, path
 
 
 def rotate_file(target_path, file_name, page_indexes, degrees):
+    """
+    Function which rotate pages contains in page_index pivot by the values specified in the array degrees
+    :param target_path: name of user folder
+    :param file_name:
+    :param page_indexes:
+    :param degrees:
+    :return:
+    """
     file_name = f'{target_path}/{file_name}'
     new_file_name = f'{target_path}/Rotated_File.pdf'
     with open(file_name, 'rb') as pdf_file, open(new_file_name, 'wb') as pdf_file_rotated:
@@ -57,7 +65,7 @@ def split_file(target_path, file_name, *split_points_indexes):
             for page_num in range(i, j):
                 pdf_writer.addPage(pdf_reader.getPage(page_num))
             file_index += 1
-            new_file_name = f'{folder}/{file_name}_{file_index}.pdf'
+            new_file_name = f'{folder}/{file_name[:-4]}_{file_index}.pdf'
             with open(new_file_name, 'wb') as output_file:
                 pdf_writer.write(output_file)
     return folder

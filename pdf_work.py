@@ -14,3 +14,15 @@ def rotate_file(target_path, file_name, page_indexes, degrees):
             pdf_writer.addPage(pdf_page)
         pdf_writer.write(pdf_file_rotated)
     return new_file_name
+
+
+def unit_file(target_path, *file_names):
+    new_file_name = f'{target_path}/Unit_file.pdf'
+    pdf_merger = PyPDF2.PdfFileMerger()
+    for file_name in file_names:
+        pdf_file_name = f'{target_path}/{file_name}'
+        pdf_merger.append(PyPDF2.PdfFileReader(pdf_file_name, strict=False))
+
+    with open(new_file_name, 'wb') as pdf_file_merged:
+        pdf_merger.write(pdf_file_merged)
+    return new_file_name

@@ -32,7 +32,7 @@ def rotate_file(target_path, file_name, page_indexes, degrees):
     return new_file_name
 
 
-def unit_file(target_path, *file_names):
+def unit_file(target_path, file_names):
     """
     Function for union files
     :param target_path: name of user folder

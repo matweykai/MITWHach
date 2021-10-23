@@ -3,7 +3,7 @@ from os import mkdir
 
 
 def pdf_to_jpeg(filename, save):
-    pages = convert_from_path(filename, 500, poppler_path=r'C:\Program Files\poppler-0.68.0\bin')
+    pages = convert_from_path(filename, 70, poppler_path=r'C:\Program Files\poppler-0.68.0\bin')
     try:
         mkdir(save)
     except Exception as e:

@@ -1,6 +1,7 @@
 import PyPDF2
 from PyPDF2 import utils
 from os import mkdir, path
+from django.http import FileResponse
 
 
 # target_path - папка пользователя относительно текущей директории
@@ -61,7 +62,9 @@ def split_file(target_path, file_name, split_points_indexes):
     :return: folder which contains split files
     """
     abs_file_name = f'{target_path}/{file_name}'
-    folder = f'{target_path}/split_files'
+    folder = 'split_files'
+    abs_folder = f'{target_path}/split_files'
+
     with open(abs_file_name, 'rb') as pdf_file:
         try:
             pdf_reader = PyPDF2.PdfFileReader(pdf_file)
@@ -70,15 +73,15 @@ def split_file(target_path, file_name, split_points_indexes):
         split_points_indexes = sorted(split_points_indexes)
         split_points_indexes.insert(0, 0)
         split_points_indexes.append(pdf_reader.numPages)
-        if not path.exists(folder):
-            mkdir(folder)
+        if not path.exists(abs_folder):
+            mkdir(abs_folder)
         file_index = 0
         for i, j in zip(split_points_indexes[:-1], split_points_indexes[1:]):
             pdf_writer = PyPDF2.PdfFileWriter()
             for page_num in range(i, j):
                 pdf_writer.addPage(pdf_reader.getPage(page_num))
             file_index += 1
-            new_file_name = f'{folder}/{file_name[:-4]}_{file_index}.pdf'
+            new_file_name = f'{abs_folder}/{file_name[:-4]}_{file_index}.pdf'
             with open(new_file_name, 'wb') as output_file:
                 pdf_writer.write(output_file)
     return folder
@@ -107,3 +110,7 @@ def delete_pages(target_path, file_name, page_indexes):
         with open(new_file_name, 'wb') as output_file:
             pdf_writer.write(output_file)
     return new_file_name
+
+
+def send_file_to_user(file_path):
+    return FileResponse(open(file_path, 'rb'))

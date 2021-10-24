@@ -1,11 +1,14 @@
 from django.shortcuts import render
 
 from django.core.files.storage import FileSystemStorage
+import requests
+from django.http import FileResponse
 
 import os
 import secrets
 # ...
 import novus.pdf_work
+import novus.archivator
 
 
 def index(request):
@@ -35,9 +38,12 @@ def index(request):
 
 def separate(request):
     key = request.session.get('key')
+    t_path = os.path.join(os.getcwd(), f'/media/{key}')
     target_path = os.getcwd().replace("\\", '/', os.getcwd().count("\\")) + f'/media/{key}'
+
     file_name = request.session.get("file_name")
 
-    novus.pdf_work.split_file(target_path=target_path, file_name=file_name, split_points_indexes=(1, 3, 5))
+    folder_name = novus.pdf_work.split_file(target_path=target_path, file_name=file_name, split_points_indexes=(1, 3, 5))
+    archived_file = novus.archivator.archive_files(target_path=target_path, folder_name=folder_name)
 
-    return
+    return FileResponse(open(f'{archived_file}', 'rb'))

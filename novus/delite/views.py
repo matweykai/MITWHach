@@ -73,12 +73,6 @@ def index(request):
             'key': key,
             'src': src,
         })
-
-
-    
-
-    
-        
     return render(request, 'delite/index.html')
 
     

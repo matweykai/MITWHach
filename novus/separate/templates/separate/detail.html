@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+	{% load static %}
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+	<link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+	<title>NOVUS</title>
+
+	
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="col">
+             <div class="overview">
+                 <ul class="overview_list">
+                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
+                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
+                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
+                 </ul>
+             </div>
+        </div>
+ 
+ 
+        <div class="col">
+             <h1>Разделить файл</h1>
+ 
+             <form method="post" class="form">
+                {% csrf_token %}
+ 
+                 <label for="str_num">Страница разделения</label>
+                 <input type="text" name="str_num" placeholder="Номер страницы (1 | 1,2 | 1-4)">
+ 
+                 <button class="btn" type="submit">Разделить</button>
+ 
+             </form>
+
+             {% if num %}
+				<p>Num is: {{ num }}</a></p>
+			 {% endif %}
+
+
+             {% if key %}
+				<p>Key is: {{ key }}</a></p>
+			 {% endif %}
+
+             {% if uploaded_file_url %}
+				<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+			 {% endif %}
+
+        </div>
+     </div>
+ 
+     <script src="js/scripts.min.js"></script>
+
+    <script src="{% static 'js/scripts.min.js' %}"></script>
+</body>
+
+</html>

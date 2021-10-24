@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+	{% load static %}
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+	<link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+	<title>NOVUS</title>
+
+	
+
+</head>
+
+    <div class="wrapper-col">
+       
+		<h1>Объединить файлы</h1>
+
+		<form method="post" class="download" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="file" name="fidedrop_1" id="">
+			<div class="drop_zone">
+				<div>
+					<span class="drop_zone_desc">Для загрузки, перетащите файл сюда.</span>
+				</div>
+			</div>
+
+			<p class="download_title">Загружено:</p>
+			<ul class="download_list">
+
+				<li class="download_list_item">
+					<div class="icon download_list_icon">
+						<?xml version="1.0" encoding="iso-8859-1"?>
+						<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+						<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
+						<g>
+							<g>
+								<path d="M320.45,0H64.95v490h360.1V112L320.45,0z M254.35,428.2h-124.4c-5.4,0-10.1-4.3-10.1-10.1c0-5.4,4.3-10.1,10.1-10.1h124.4
+									c5.4,0,10.1,4.3,10.1,10.1C264.45,423.5,260.25,428.2,254.35,428.2z M360.15,364.4h-230.2c-5.4,0-10.1-4.3-10.1-10.1
+									c0-5.4,4.3-10.1,10.1-10.1h230.2c5.4,0,10.1,4.3,10.1,10.1C370.25,360.1,365.65,364.4,360.15,364.4z M360.15,301h-230.2
+									c-5.4,0-10.1-4.3-10.1-10.1c0-5.4,4.3-10.1,10.1-10.1h230.2c5.4,0,10.1,4.3,10.1,10.1C370.25,296.7,365.65,301,360.15,301z
+									M360.15,237.6h-230.2c-5.4,0-10.1-4.3-10.1-10.1s4.3-10.1,10.1-10.1h230.2c5.4,0,10.1,4.3,10.1,10.1S365.65,237.6,360.15,237.6z
+									M360.15,173.8h-230.2c-5.4,0-10.1-4.3-10.1-10.1c0-5.4,4.3-10.1,10.1-10.1h230.2c5.4,0,10.1,4.3,10.1,10.1
+									C370.25,169.6,365.65,173.8,360.15,173.8z M300.25,131.8v-112l104.6,112H300.25z"/>
+							</g>
+						</g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+						</g>
+						</svg>
+					</div>
+					<span>Лабораторная работа №1</span>
+					<div class="icon download_list_icon icon_close">
+						<?xml version="1.0" encoding="utf-8"?>
+						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							viewBox="0 0 1792 1792" style="enable-background:new 0 0 1792 1792;" xml:space="preserve">
+						<path d="M1082.2,896.6l410.2-410c51.5-51.5,51.5-134.6,0-186.1s-134.6-51.5-186.1,0l-410.2,410L486,300.4
+							c-51.5-51.5-134.6-51.5-186.1,0s-51.5,134.6,0,186.1l410.2,410l-410.2,410c-51.5,51.5-51.5,134.6,0,186.1
+							c51.6,51.5,135,51.5,186.1,0l410.2-410l410.2,410c51.5,51.5,134.6,51.5,186.1,0c51.1-51.5,51.1-134.6-0.5-186.2L1082.2,896.6z"/>
+						</svg>
+					</div>
+				</li>
+
+			</ul>
+
+			<button class="btn" type="submit">Отправить</button>
+
+			{% if uploaded_file_url %}
+				<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+			{% endif %}
+
+			{% if out %}
+				<p>File uploaded at: <a href="{{  response }}">{{  response }}</a></p>
+			{% endif %}
+		</form>
+
+		
+
+    </div>
+
+    <script src="{% static 'js/scripts.min.js' %}"></script>
+</body>
+
+</html>

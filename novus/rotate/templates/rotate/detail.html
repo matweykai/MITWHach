@@ -21,9 +21,9 @@
         <div class="col">
              <div class="overview">
                  <ul class="overview_list">
-                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
-                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
-                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
+                     {% for i in src %}
+                        <li class="overview_list_item"><img src="{% static 'img/' %}{{ key }}/img/{{i}}.jpg" alt="#"></li>
+                     {% endfor %}
                  </ul>
              </div>
         </div>

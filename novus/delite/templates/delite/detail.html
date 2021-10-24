@@ -23,12 +23,9 @@
                  <ul class="overview_list">
 
                      {% for i in src %}
-                        <li class="overview_list_item"><img src="/media/{{key}}/img/{{ i }}.jpg" alt="#"></li>
+                        <li class="overview_list_item"><img src="{% static 'img/' %}{{ key }}/img/{{i}}.jpg" alt="#"></li>
                      {% endfor %}
 
-                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
-                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
-                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
                  </ul>
              </div>
         </div>

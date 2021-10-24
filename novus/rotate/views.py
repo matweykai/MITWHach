@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from django.core.files.storage import FileSystemStorage
 from django.http import FileResponse
+from shutil import move
 
 import os
 import secrets
@@ -47,9 +48,23 @@ def index(request):
         uploaded_file_url = fs.url(filename)
         uploaded = True
 
+        target_path = os.getcwd().replace("\\", '/', os.getcwd().count("\\")) + f'/media/{key}'
+        folder_path = novus.jpeg.pdf_to_jpeg(target_path, request.session.get('name'), "img")
+        imges_path = os.getcwd().replace("\\", '/', os.getcwd().count("\\")) + f'/rotate/static/img/{key}'
+
+        img_count = len(os.listdir(folder_path))
+
+        os.mkdir(imges_path)
+        move(folder_path, imges_path)
+
+        src = []
+        for i in range(0, img_count):
+            src.append('out' + str(i))
+
         # РЕДИРЕКТ НА ФОРМУ НАСТРОЙКИ
         return render(request, 'rotate/detail.html', {
             'key': key,
+            'src': src,
         })
         
     return render(request, 'rotate/index.html')

@@ -6,6 +6,7 @@ from django.core.files.storage import FileSystemStorage
 import os
 import secrets
 
+from shutil import move
 from requests import request
 import mimetypes
 import novus.pdf_work
@@ -56,9 +57,23 @@ def index(request):
         uploaded_file_url = fs.url(filename)
         uploaded = True
 
+        target_path = os.getcwd().replace("\\", '/', os.getcwd().count("\\")) + f'/media/{key}'
+        folder_path = novus.jpeg.pdf_to_jpeg(target_path, request.session.get('name'), "img")
+        imges_path = os.getcwd().replace("\\", '/', os.getcwd().count("\\")) + f'/separate/static/img/{key}'
+
+        img_count = len(os.listdir(folder_path))
+
+        os.mkdir(imges_path)
+        move(folder_path, imges_path)
+
+        src = []
+        for i in range(0, img_count):
+            src.append('out' + str(i))
+
         # РЕДИРЕКТ НА ФОРМУ НАСТРОЙКИ
         return render(request, 'separate/detail.html', {
             'key': key,
+            'src': src,
         })
         
     return render(request, 'separate/index.html')

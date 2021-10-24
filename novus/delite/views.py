@@ -11,6 +11,7 @@ from requests import request
 import mimetypes
 import novus.pdf_work
 import novus.jpeg
+from shutil import move
 
 
 # Create your views here.
@@ -45,7 +46,7 @@ def index(request):
 
 
     # ЗАГРУЗКА ФАЙЛА НА СЕРВЕР
-    if request.method == 'POST' and request.FILES['fidedrop_1'] and not uploaded:
+    if request.method == 'POST' and request.FILES['filedrop_1'] and not uploaded:
         
         # Генерация уникального ключа
         key = secrets.token_urlsafe(16)
@@ -53,7 +54,7 @@ def index(request):
 
         target_path = os.getcwd().replace("\\", '/', os.getcwd().count("\\")) + f'/media/{key}'
         # Загрузка файла на сервер
-        myfile = request.FILES['fidedrop_1']
+        myfile = request.FILES['filedrop_1']
         request.session['name'] = str(myfile)
         fs = FileSystemStorage()
         filename = fs.save(os.path.join(request.session.get('key'), myfile.name), myfile)
@@ -62,7 +63,13 @@ def index(request):
 
         #SEND IMG======
         folder_path = novus.jpeg.pdf_to_jpeg(target_path, request.session.get('name'), "img")
+        imges_path = os.getcwd().replace("\\", '/', os.getcwd().count("\\")) + f'/delite/static/img/{key}'
+
         img_count = len(os.listdir(folder_path))
+
+        os.mkdir(imges_path)
+        move(folder_path, imges_path)
+
         src = []
         for i in range(0, img_count):
             src.append('out'+str(i))

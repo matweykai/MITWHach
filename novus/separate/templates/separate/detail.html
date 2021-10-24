@@ -21,9 +21,9 @@
         <div class="col">
              <div class="overview">
                  <ul class="overview_list">
-                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
-                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
-                     <li class="overview_list_item"><img src="./img/A4.png" alt="#"></li>
+                     {% for i in src %}
+                        <li class="overview_list_item"><img src="{% static 'img/' %}{{ key }}/img/{{i}}.jpg" alt="#"></li>
+                     {% endfor %}
                  </ul>
              </div>
         </div>
@@ -41,19 +41,6 @@
                  <button class="btn" type="submit">Разделить</button>
  
              </form>
-
-             {% if num %}
-				<p>Num is: {{ num }}</a></p>
-			 {% endif %}
-
-
-             {% if key %}
-				<p>Key is: {{ key }}</a></p>
-			 {% endif %}
-
-             {% if uploaded_file_url %}
-				<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-			 {% endif %}
 
         </div>
      </div>

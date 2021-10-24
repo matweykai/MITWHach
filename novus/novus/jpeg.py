@@ -1,5 +1,9 @@
 from pdf2image import convert_from_path
 from os import mkdir, path
+from django.conf import settings
+
+
+
 
 
 def pdf_to_jpeg(target_path, file_name, save):
@@ -8,7 +12,7 @@ def pdf_to_jpeg(target_path, file_name, save):
     if not path.exists(abs_folder):
         mkdir(abs_folder)
     try:
-        pages = convert_from_path(abs_file_name, 70, poppler_path=r'D:\Университет\MITWHack\poppler-0.68.0\bin')
+        pages = convert_from_path(abs_file_name, 70, poppler_path=f'D:/DIRTYLAB/HACKATON_MIET_DJANGO/novus/MITWHach/novus/poppler-0.68.0/bin')
         for i in range(len(pages)):
             name = abs_folder + "/out" + str(i) + ".jpg"
             pages[i].save(name, 'JPEG')

@@ -45,7 +45,7 @@ def index(request):
 
 
     # ЗАГРУЗКА ФАЙЛА НА СЕРВЕР
-    if request.method == 'POST' and request.FILES['fidedrop_1'] and not uploaded:
+    if request.method == 'POST' and request.FILES['filedrop_1'] and not uploaded:
         
         # Генерация уникального ключа
         key = secrets.token_urlsafe(16)
@@ -53,7 +53,7 @@ def index(request):
 
         target_path = os.getcwd().replace("\\", '/', os.getcwd().count("\\")) + f'/media/{key}'
         # Загрузка файла на сервер
-        myfile = request.FILES['fidedrop_1']
+        myfile = request.FILES['filedrop_1']
         request.session['name'] = str(myfile)
         fs = FileSystemStorage()
         filename = fs.save(os.path.join(request.session.get('key'), myfile.name), myfile)

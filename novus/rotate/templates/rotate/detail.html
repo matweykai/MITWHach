@@ -41,24 +41,9 @@
                  <label for="str_num">Повороты</label>
                  <input type="text" name="str_angle" placeholder="Угол поворота (90 | 180 | 270)">
  
-                 <button class="btn" type="submit">Разделить</button>
+                 <button class="btn" type="submit">Повернуть</button>
  
              </form>
-
-             {% if num %}
-				<p>Num is: {{ num }}</p>
-                <p>Num is: {{ angle }}</p>
-			 {% endif %}
-
-
-             {% if key %}
-				<p>Key is: {{ key }}</a></p>
-			 {% endif %}
-
-             {% if uploaded_file_url %}
-				<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-			 {% endif %}
-
         </div>
      </div>
  
